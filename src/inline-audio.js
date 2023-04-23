@@ -75,7 +75,7 @@ class InlineAudio extends LitElement {
       <div class="container" @click="${this.handleClickEvent}"> 
         <simple-icon class="icon-spacing" icon="${this.PlayIcon}"></simple-icon>
         <slot></slot>
-        <audio class="player" src="${this.audioFile}" type="audio/mpeg" @timeupdate="${this.handleProgressBar}"></audio>
+        <audio class="player" src="${this.AudioFile}" type="audio/mpeg" @timeupdate="${this.handleProgressBar}"></audio>
       <div>
     `;
   }
