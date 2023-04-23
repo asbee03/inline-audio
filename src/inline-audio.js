@@ -6,9 +6,9 @@ const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
 
 class InlineAudio extends LitElement {
   static properties = {
-    audioFile: { attribute: "audio-file", type: String, reflect: true},
-    playerIcon: { type: String},
-    isPlaying: { type: Boolean, reflect: true}
+    AudioFile: { attribute: "audio-file", type: String, reflect: true},
+    PlayerIcon: { type: String},
+    Play: { type: Boolean, reflect: true}
   }
 
   static styles = css`
@@ -38,35 +38,35 @@ class InlineAudio extends LitElement {
 
   constructor() {
     super();
-    this.audioFile = '../assets/drake-feels.mp3';
-    this.playerIcon = "av:play-arrow";
-    this.isPlaying = false;
+    this.AudioFile = '../assets/drake-feels.mp3';
+    this.PlayerIcon = "av:play-arrow";
+    this.Play = false;
   }
 
   handleProgressBar(){
     if(this.shadowRoot.querySelector(".player").ended){
-      this.isPlaying = false;
-      this.playerIcon = "av:play-arrow";
-      console.log(this.isPlaying);
+      this.Play = false;
+      this.PlayerIcon = "av:play-arrow";
+      console.log(this.Play);
     }
-    var audioDuration = this.shadowRoot.querySelector(".player").duration;
-    var audioCurrentTime = this.shadowRoot.querySelector(".player").currentTime;
-    var progressPercentage = (audioCurrentTime / audioDuration)*100;
-    this.shadowRoot.querySelector(".container").style.background = `linear-gradient(90deg, blue 0% ${progressPercentage}%, grey ${progressPercentage}% 100%)`;
+    var Duration = this.shadowRoot.querySelector(".player").duration;
+    var AudioTime = this.shadowRoot.querySelector(".player").AudioTime;
+    var Progress = (audioCurrentTime / audioDuration)*100;
+    this.shadowRoot.querySelector(".container").style.background = `linear-gradient(90deg, blue 0% ${Progress}%, grey ${Progress}% 100%)`;
   }
 
   handleClickEvent(){
     if(this.shadowRoot.querySelector('audio').paused){
       this.shadowRoot.querySelector('.player').play();
-      this.isPlaying = true;
-      this.playerIcon = "av:pause";
-      console.log(this.isPlaying);
+      this.Play = true;
+      this.PlayerIcon = "av:pause";
+      console.log(this.Play);
     }
     else{
       this.shadowRoot.querySelector('.player').pause();
-      this.isPlaying = false;
-      this.playerIcon = "av:play-arrow";
-      console.log(this.isPlaying);
+      this.Play = false;
+      this.PlayerIcon = "av:play-arrow";
+      console.log(this.Play);
     }
   }
 
