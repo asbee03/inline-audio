@@ -7,7 +7,7 @@ const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
 class InlineAudio extends LitElement {
   static properties = {
     AudioFile: { attribute: "audio-file", type: String, reflect: true},
-    PlayerIcon: { type: String},
+    PlayIcon: { type: String},
     Play: { type: Boolean, reflect: true}
   }
 
@@ -39,19 +39,19 @@ class InlineAudio extends LitElement {
   constructor() {
     super();
     this.AudioFile = '../assets/drake-feels.mp3';
-    this.PlayerIcon = "av:play-arrow";
+    this.PlayIcon = "av:play-arrow";
     this.Play = false;
   }
 
   handleProgressBar(){
     if(this.shadowRoot.querySelector(".player").ended){
       this.Play = false;
-      this.PlayerIcon = "av:play-arrow";
+      this.PlayIcon = "av:play-arrow";
       console.log(this.Play);
     }
     var Duration = this.shadowRoot.querySelector(".player").duration;
     var AudioTime = this.shadowRoot.querySelector(".player").AudioTime;
-    var Progress = (audioCurrentTime / audioDuration)*100;
+    var Progress = (AudioTime / Duration)*100;
     this.shadowRoot.querySelector(".container").style.background = `linear-gradient(90deg, blue 0% ${Progress}%, grey ${Progress}% 100%)`;
   }
 
@@ -59,13 +59,13 @@ class InlineAudio extends LitElement {
     if(this.shadowRoot.querySelector('audio').paused){
       this.shadowRoot.querySelector('.player').play();
       this.Play = true;
-      this.PlayerIcon = "av:pause";
+      this.PlayIcon = "av:pause";
       console.log(this.Play);
     }
     else{
       this.shadowRoot.querySelector('.player').pause();
       this.Play = false;
-      this.PlayerIcon = "av:play-arrow";
+      this.PlayIcon = "av:play-arrow";
       console.log(this.Play);
     }
   }
@@ -73,7 +73,7 @@ class InlineAudio extends LitElement {
   render() {
     return html`
       <div class="container" @click="${this.handleClickEvent}"> 
-        <simple-icon class="icon-spacing" icon="${this.playerIcon}"></simple-icon>
+        <simple-icon class="icon-spacing" icon="${this.PlayIcon}"></simple-icon>
         <slot></slot>
         <audio class="player" src="${this.audioFile}" type="audio/mpeg" @timeupdate="${this.handleProgressBar}"></audio>
       <div>
