@@ -2,8 +2,6 @@ import { LitElement, html, css } from 'lit';
 import "@lrnwebcomponents/simple-icon/simple-icon.js";
 import "@lrnwebcomponents/simple-icon/lib/simple-icons.js";
 
-const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
-
 class InlineAudio extends LitElement {
   static properties = {
     AudioFile: { attribute: "audio-file", type: String, reflect: true},
@@ -70,9 +68,16 @@ class InlineAudio extends LitElement {
     }
   }
 
+  handleKeyDownEvent(event){
+    if(event.code === 'Enter' || event.code === 'Space'){
+      this.handleClickEvent();
+      event.preventDefault();
+    }
+  }
+
   render() {
     return html`
-      <div class="container" @click="${this.handleClickEvent}"> 
+      <div class="container" @click="${this.handleClickEvent}" @keydown="${this.handleKeyDownEvent}" tabindex="0"> 
         <simple-icon class="icon-spacing" icon="${this.PlayButton}"></simple-icon>
         <slot></slot>
         <audio class="player" src="${this.AudioFile}" type="audio/mpeg" @timeupdate="${this.handleProgressBar}"></audio>
