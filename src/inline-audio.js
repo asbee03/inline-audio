@@ -56,7 +56,7 @@ class InlineAudio extends SimpleColors {
     var audioDuration = this.shadowRoot.querySelector(".player").duration;
     var audioTime = this.shadowRoot.querySelector(".player").currentTime;
     var Percentage = (audioTime / audioDuration)*100;
-    this.shadowRoot.querySelector(".container").style.background = `linear-gradient(90deg, var(--simple-colors-default-theme-accent-4) 0% ${Percentage}%, var(--simple-colors-default-theme-grey-4) ${Percentage}% 100%)`;
+    this.shadowRoot.querySelector(".container").style.background = `linear-gradient(90deg, var(--simple-colors-default-theme-blue-4)  0% ${Percentage}%, var(--simple-colors-default-theme-grey-4) ${Percentage}% 100%)`;
   }
 
   handleClickEvent(){
@@ -85,7 +85,7 @@ class InlineAudio extends SimpleColors {
     return html`
       <div class="container" @click="${this.handleClickEvent}" @keydown="${this.handleKeyDownEvent}" tabindex="0"> 
         <simple-icon class="icon-spacing" icon="${this.PlayButton}"></simple-icon>
-        <span @click="${this.handleClickEvent}"><slot></slot></span>
+        <slot></slot>
         <audio class="player" src="${this.AudioFile}" type="audio/mpeg" @timeupdate="${this.handleProgressBar}"></audio>
       <div>
     `;
