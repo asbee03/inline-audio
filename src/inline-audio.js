@@ -29,7 +29,7 @@ class InlineAudio extends SimpleColors {
       display: inline-flex;
       align-items: center;
       padding: 4px 4px 4px 0px;
-      background: grey;
+      background: var(--simple-colors-default-theme-grey-4);
       border-radius: 4px;
       min-width: 64px;
       cursor: pointer;
