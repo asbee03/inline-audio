@@ -82,6 +82,20 @@ class InlineAudio extends SimpleColors {
     }
   }
 
+  loadAudio(source) {
+    const audioFile = this.shadowRoot.querySelector('.player');
+    audioFile.src = source;
+    audioFile.load();
+  }
+
+  handlePlaythrough(){
+    setTimeout(() => {
+      console.log("Loading finished");
+      this.canPlay = true;
+      this.audioController(true);
+    }, 500); 
+  }
+
   audioController(playState){
     const audio = this.shadowRoot.querySelector('.player');
     if(playState){
